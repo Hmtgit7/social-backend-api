@@ -31,7 +31,7 @@ A Django backend API for a social platform that enables user registration, authe
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/social-backend.git
+   git clone https://github.com/Hmtgit7/social-backend-api.git
    cd social-backend
    ```
 
