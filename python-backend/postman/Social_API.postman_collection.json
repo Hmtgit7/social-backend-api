@@ -1,0 +1,466 @@
+{
+    "info": {
+        "_postman_id": "f8c6e3b5-d8a4-4f0a-8c5d-e6c9a2b3f1d4",
+        "name": "Social API",
+        "description": "API collection for the Social Backend application",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"user@example.com\",\n    \"name\": \"Test User\",\n    \"password\": \"Password123!\",\n    \"password_confirm\": \"Password123!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/auth/register/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "register",
+                                ""
+                            ]
+                        },
+                        "description": "Register a new user"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"Password123!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/auth/login/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "login",
+                                ""
+                            ]
+                        },
+                        "description": "Login with email and password"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Google Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"token_id\": \"YOUR_GOOGLE_TOKEN_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/auth/google/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "google",
+                                ""
+                            ]
+                        },
+                        "description": "Login with Google"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Refresh Token",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/auth/refresh/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "auth",
+                                "refresh",
+                                ""
+                            ]
+                        },
+                        "description": "Refresh JWT token"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Endpoints for user registration and authentication"
+        },
+        {
+            "name": "User Profile",
+            "item": [
+                {
+                    "name": "Get Profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/users/me/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "users",
+                                "me",
+                                ""
+                            ]
+                        },
+                        "description": "Get current user profile"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Profile",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Updated Name\",\n    \"bio\": \"This is my updated bio.\",\n    \"profile_picture\": \"https://example.com/profile.jpg\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/users/me/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "users",
+                                "me",
+                                ""
+                            ]
+                        },
+                        "description": "Update user profile"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Endpoints for managing user profile"
+        },
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "List All Users",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/users/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "users",
+                                ""
+                            ]
+                        },
+                        "description": "List all users (except self)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Search Users",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/users/?search=John",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "users",
+                                ""
+                            ],
+                            "query": [
+                                {
+                                    "key": "search",
+                                    "value": "John"
+                                }
+                            ]
+                        },
+                        "description": "Search users by name"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Endpoints for listing and searching users"
+        },
+        {
+            "name": "Friends",
+            "item": [
+                {
+                    "name": "List Friends",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/friends/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "friends",
+                                ""
+                            ]
+                        },
+                        "description": "List all friends"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Friend Suggestions",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/friends/suggestions/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "friends",
+                                "suggestions",
+                                ""
+                            ]
+                        },
+                        "description": "Get friend suggestions"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List Friend Requests",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/friends/requests/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "friends",
+                                "requests",
+                                ""
+                            ]
+                        },
+                        "description": "List all friend requests (sent and received)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Send Friend Request",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/friends/requests/{{user_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "friends",
+                                "requests",
+                                "{{user_id}}",
+                                ""
+                            ]
+                        },
+                        "description": "Send a friend request to a user"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Accept Friend Request",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/friends/requests/{{request_id}}/accept/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "friends",
+                                "requests",
+                                "{{request_id}}",
+                                "accept",
+                                ""
+                            ]
+                        },
+                        "description": "Accept a friend request"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Reject Friend Request",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/friends/requests/{{request_id}}/reject/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "friends",
+                                "requests",
+                                "{{request_id}}",
+                                "reject",
+                                ""
+                            ]
+                        },
+                        "description": "Reject a friend request"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Endpoints for managing friends and friend requests"
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "// Extract and save tokens from registration/login responses",
+                    "if (pm.response.code === 200 || pm.response.code === 201) {",
+                    "    const jsonResponse = pm.response.json();",
+                    "    if (jsonResponse.access) {",
+                    "        pm.environment.set('access_token', jsonResponse.access);",
+                    "    }",
+                    "    if (jsonResponse.refresh) {",
+                    "        pm.environment.set('refresh_token', jsonResponse.refresh);",
+                    "    }",
+                    "}"
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8000",
+            "type": "string"
+        }
+    ]
+}
